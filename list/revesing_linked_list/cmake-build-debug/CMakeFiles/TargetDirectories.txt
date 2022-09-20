@@ -1,0 +1,3 @@
+/Users/cbtt1/Code/C/DataStructure/list/revesing_linked_list/cmake-build-debug/CMakeFiles/revesing_linked_list.dir
+/Users/cbtt1/Code/C/DataStructure/list/revesing_linked_list/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/cbtt1/Code/C/DataStructure/list/revesing_linked_list/cmake-build-debug/CMakeFiles/rebuild_cache.dir
