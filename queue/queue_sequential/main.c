@@ -1,38 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAXSIZE 50
 
 typedef int ElementType;
+typedef int Position;
 typedef struct QNode *Queue;
 struct QNode
 {
-    ElementType Data[MAXSIZE];
-    int rear;
-    int front;
+    ElementType * Data;
+    Position Front,Rear;
+    int MaxSize;
 };
 
-void AddQ(Queue PtrQ , ElementType item)
+Queue CreateQueue(int MaxSize)
 {
-    if((PtrQ -> rear+1)%MAXSIZE == PtrQ->front)
-    {
-        printf("队列满");
-        return ;
-    }
-    PtrQ->rear = (PtrQ->rear+1)%MAXSIZE;
-    PtrQ->Data[PtrQ->rear] = item;
+    Queue Q = (Queue) malloc(sizeof (struct QNode));
+    Q -> Data = (ElementType *) malloc(MaxSize * sizeof(ElementType));
+    Q -> Front = Q -> Rear = 0;
+    Q -> MaxSize = MaxSize;
+    return Q;
+
 }
 
-ElementType DeleteQ(Queue PtrQ)
+int IsFull(Queue Q)
 {
-    if(PtrQ -> front == PtrQ->rear)
+    return((Q->Rear+1)%Q->MaxSize == Q->Front);
+}
+int AddQ(Queue Q , ElementType item)
+{
+    if(IsFull(Q))
+    {
+        printf("Queue is full");
+        return -1;
+    }
+    Q->Rear = (Q->Rear + 1) % MAXSIZE;
+    Q->Data[Q->Rear] = item;
+    return 1;
+}
+
+int IsEmpty(Queue Q)
+{
+    return (Q->Front == Q->Rear);
+}
+ElementType DeleteQ(Queue Q)
+{
+    if(IsEmpty(Q))
     {
         printf("队列空");
         return -1;
     }
     else
     {
-        PtrQ->front = (PtrQ->front+1)%MAXSIZE;
-        return PtrQ->Data[PtrQ->front];
+        Q->Front = (Q->Front + 1) % MAXSIZE;
+        return Q->Data[Q->Front];
+        return 1;
     }
 }
 int main()

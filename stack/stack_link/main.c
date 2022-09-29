@@ -24,7 +24,7 @@ int IsEmpty(Stack S)
     return (S->Next == NULL);
 }
 
-void Push(ElementType item,Stack S)
+void Push(Stack S,ElementType item)
 {
     Stack TmpCell;
     TmpCell=(Stack) malloc(sizeof(struct SNode));
@@ -54,6 +54,20 @@ ElementType Pop(Stack S)
 
 int main()
 {
-    printf("Hello, World!\n");
+    Stack TestS = CreateStack();
+    Push(TestS,2);
+    Push(TestS,10);
+    Push(TestS,20);
+    Push(TestS,40);
+    ElementType i ;
+    i = Pop(TestS);
+    printf("%d ",i);
+    i = Pop(TestS);
+    printf("%d ",i);
+    i = Pop(TestS);
+    printf("%d ",i);
+    i = Pop(TestS);
+    printf("%d ",i);
+
     return 0;
 }
